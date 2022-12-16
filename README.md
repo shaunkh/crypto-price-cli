@@ -1,1 +1,1 @@
-"# crypto-price-cli" 
+Crypto Price CLI Tool
