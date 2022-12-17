@@ -7,7 +7,7 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 use serde_derive::{Deserialize, Serialize};
 use std::env;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Deb   ug)]
 struct CoinGeckoCoinMarketsResponse {
     data: Vec<CoinGeckoCoinFromMarkets>,
 }
