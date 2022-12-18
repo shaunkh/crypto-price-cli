@@ -1,27 +1,21 @@
-use dotenv::dotenv;
-use reqwest::header::{HeaderMap, AUTHORIZATION};
 use reqwest::Client;
 use std::collections::HashMap;
-use std::env;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    dotenv().ok();
-    // let mut headers = HeaderMap::new();
-    // headers.insert(
-    //     AUTHORIZATION,
-    //     format!("Bearer {}", api_key).parse().unwrap(),
-    // );
 
+// JSON needs deserializer
+// Can derive but essentially make a struct for it and add the deserialize and debug macro
+
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = Client::new();
 
     let resp = client
-        .get("https://httpbin.org/ip")
+        .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
         .send()
-        .await?
-        .json::<HashMap<String, String>>()
         .await?;
     println!("{:#?}", resp);
+
+    let resp_json = resp.json().await?;
 
     Ok(())
 }
